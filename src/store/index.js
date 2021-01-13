@@ -38,6 +38,22 @@ export default new Vuex.Store({
 		toggleFahrenheit: (state) => state.fahrenheit = !state.fahrenheit,
 	},
 	actions: {
+		async fetchGeoLocation({ commit, state, dispatch }, { latitude, longitude }) {
+			try {
+				const { data } = await axios.get(`https://dataservice.accuweather.com/locations/v1/cities/geoposition/search`, {
+					params: {
+						apikey: process.env.VUE_APP_API_KEY,
+						q: `${latitude},${longitude}`
+					}
+				});
+
+				commit('setCityKey', data.Key);
+				dispatch('fetchCity');
+			} catch (error) {
+				console.error('Can not fetch geo location. ', error);
+			}
+		},
+
 		async fetchCity({ commit, state, dispatch }) {
 			try {
 				const { data } = await axios.get(`https://dataservice.accuweather.com/currentconditions/v1/${state.cityKey}`, {
@@ -46,12 +62,12 @@ export default new Vuex.Store({
 						apikey: process.env.VUE_APP_API_KEY,
 					}
 				});
+
+				dispatch('fetchForecasts');
+				commit('setCity', data[0]);
 			} catch (error) {
 				console.error('Can not fetch city. ', error);
 			}
-
-			dispatch('fetchForecasts');
-			commit('setCity', data[0]);
 		},
 
 		async fetchForecasts({ commit, state }) {
@@ -61,11 +77,12 @@ export default new Vuex.Store({
 						apikey: process.env.VUE_APP_API_KEY
 					}
 				});
+
+				commit('setForecasts', forecasts.data.DailyForecasts);
+
 			} catch (error) {
 				console.error('Can not fetch forecasts. ', error);
 			}
-
-			commit('setForecasts', forecasts.data.DailyForecasts);
 		},
 
 		changeCity({ dispatch, commit }, key) {

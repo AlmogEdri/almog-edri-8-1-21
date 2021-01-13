@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <app-bar />
-    <v-main style="z-index:1">
+    <v-main style="z-index: 1">
       <v-container>
         <router-view />
       </v-container>
@@ -21,11 +21,22 @@ export default {
     AppBar,
     Background,
   },
-  beforeMount() {
+  async beforeMount() {
     this.fetchCity();
+
+    let geolocation = await this.getCoords();
+    if (geolocation?.coords) {
+      this.fetchGeoLocation(geolocation.coords);
+    }
   },
   methods: {
-    ...mapActions(["fetchCity"]),
+    ...mapActions(["fetchCity", "fetchGeoLocation"]),
+
+    getCoords() {
+      return new Promise((res, rej) => {
+        navigator.geolocation.getCurrentPosition(res, rej);
+      });
+    },
   },
 };
 </script>

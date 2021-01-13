@@ -1,3 +1,9 @@
+/**
+ * Get img src string from icon number
+ * 
+ * @param {string | number} iconNum
+ * @return {string} 
+ */
 const getIconSrc = iconNum => 'https://www.accuweather.com/images/weathericons/' + iconNum + '.svg';
 
 /**
