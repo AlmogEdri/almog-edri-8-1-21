@@ -1,15 +1,15 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import Home from '../views/Home.vue';
-import Favorites from '../views/Favorites.vue';
+import Weather from '../views/Weather';
+import Favorites from '../views/Favorites';
 
 Vue.use(VueRouter);
 
 const routes = [
 	{
 		path: '/',
-		name: 'Home',
-		component: Home
+		name: 'Weather',
+		component: Weather
 	},
 	{
 		path: '/favorites',

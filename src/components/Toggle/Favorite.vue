@@ -1,15 +1,24 @@
 <template>
-	<v-btn value="favorites" icon>
-		<v-icon  :color="isFavorite ? 'red': 'grey'">mdi-heart</v-icon>
-	</v-btn>
+  <v-btn value="favorites" @click="toggleFavorite(cityKey)" icon>
+    <v-icon :color="is_favorite ? 'red' : 'grey'">mdi-heart</v-icon>
+  </v-btn>
 </template>
 
 <script>
-	export default {
-		data: () => ({
-			isFavorite: true
-		})
-	};
-</script>
+import { mapState, mapMutations } from "vuex";
+export default {
+  props: {
+    cityKey: String,
+  },
+  computed: {
+    ...mapState(["favorites"]),
 
-<style lang="scss"></style>
+    is_favorite() {
+      return !!this.favorites.find((x) => x.key == this.cityKey);
+    },
+  },
+  methods: {
+	  ...mapMutations(['toggleFavorite'])
+  },
+};
+</script>
