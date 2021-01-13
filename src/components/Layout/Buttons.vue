@@ -15,6 +15,7 @@
 
 <script>
 import ThemeToggle from "../Toggle/Theme";
+
 export default {
   components: {
     ThemeToggle,
@@ -24,10 +25,10 @@ export default {
 
 <style lang="scss">
 .nav-buttons {
-      align-items: center;
+  align-items: center;
 
-	@media screen and (max-width: 600px) {
-      align-items: flex-end;
-    }
+  @media screen and (max-width: 600px) {
+    align-items: flex-end;
+  }
 }
 </style>

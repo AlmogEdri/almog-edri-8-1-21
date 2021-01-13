@@ -1,6 +1,11 @@
 <template>
   <div id="navigation">
-    <v-navigation-drawer class="d-flex d-sm-none py-12 pa-7" v-model="drawer" app clipped>
+    <v-navigation-drawer
+      class="d-flex d-sm-none py-12 pa-7"
+      v-model="drawer"
+      app
+      clipped
+    >
       <nav-buttons class="mobile-nav-buttons" />
     </v-navigation-drawer>
     <v-app-bar app>
@@ -28,6 +33,7 @@ export default {
   },
 };
 </script>
+
 <style lang="scss">
 #navigation {
   .mobile-nav-buttons {

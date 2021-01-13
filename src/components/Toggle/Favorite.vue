@@ -6,6 +6,7 @@
 
 <script>
 import { mapState, mapMutations } from "vuex";
+
 export default {
   props: {
     cityKey: String,
@@ -18,7 +19,7 @@ export default {
     },
   },
   methods: {
-	  ...mapMutations(['toggleFavorite'])
+    ...mapMutations(["toggleFavorite"]),
   },
 };
 </script>

@@ -2,11 +2,9 @@
 <template>
   <div id="local-body">
     <div id="clouds" :class="{ 'dark-mode': $vuetify.theme.isDark }">
-      <div class="cloud x1" />
-      <div class="cloud x2" />
-      <div class="cloud x3" />
-      <div class="cloud x4" />
-      <div class="cloud x5" />
+      <template v-for="(item, index) in Array(6)">
+        <div :class="`cloud x${index}`" :key="index" />
+      </template>
     </div>
   </div>
 </template>
@@ -80,12 +78,18 @@
 }
 
 /*Time to animate*/
+.x0 {
+  top: 60vh;
+  -webkit-animation: moveclouds 12s linear infinite;
+  -moz-animation: moveclouds 12s linear infinite;
+  -o-animation: moveclouds 152 linear infinite;
+}
+
 .x1 {
   -webkit-animation: moveclouds 15s linear infinite;
   -moz-animation: moveclouds 15s linear infinite;
   -o-animation: moveclouds 15s linear infinite;
 }
-
 /*variable speed, opacity, and position of clouds for realistic effect*/
 .x2 {
   left: 200px;

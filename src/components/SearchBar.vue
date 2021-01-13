@@ -15,6 +15,7 @@
 
 <script>
 import { mapActions } from "vuex";
+
 export default {
   data: () => ({
     isLoading: false,
@@ -41,7 +42,9 @@ export default {
             }
           )
           .then(({ data }) => (this.entries = data))
-          .catch((err) => console.error(err));
+          .catch((error) =>
+            console.error("Error occurred while searching, ", error)
+          );
       }
       this.isLoading = false;
     },
@@ -67,5 +70,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss"></style>
