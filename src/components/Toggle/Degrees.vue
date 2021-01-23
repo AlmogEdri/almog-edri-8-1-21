@@ -1,29 +1,31 @@
 <template>
-  <v-switch
-    class="switch"
-    :input-value="fahrenheit"
-    @change="toggleFahrenheit"
-    append-icon="mdi-temperature-fahrenheit"
-    prepend-icon="mdi-temperature-celsius"
-    dense
-  />
+	<v-switch
+		class="switch"
+		:input-value="fahrenheit"
+		@change="toggleFahrenheit"
+		color="light"
+		append-icon="mdi-temperature-fahrenheit"
+		prepend-icon="mdi-temperature-celsius"
+		dense
+	/>
 </template>
 
 <script>
-import { mapState, mapMutations } from "vuex";
+	import { mapState, mapMutations } from "vuex";
 
-export default {
-  computed: {
-    ...mapState(["fahrenheit"]),
-  },
-  methods: {
-    ...mapMutations(["toggleFahrenheit"]),
-  },
-};
+	export default {
+		computed: {
+			...mapState(["fahrenheit"]),
+		},
+		methods: {
+			...mapMutations(["toggleFahrenheit"]),
+		},
+	};
 </script>
 
 <style lang="scss">
-.switch {
-  width: 100px;
-}
+	.switch {
+		width: 100px;
+		margin-bottom: 8px;
+	}
 </style>

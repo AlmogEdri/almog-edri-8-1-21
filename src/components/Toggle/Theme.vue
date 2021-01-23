@@ -1,8 +1,9 @@
 <template>
-  <v-switch
-    v-model="$vuetify.theme.isDark"
-    append-icon="mdi-weather-night"
-    prepend-icon="mdi-weather-sunny"
-    dense
-  />
+	<v-switch
+		v-model="$vuetify.theme.isDark"
+		color="light"
+		append-icon="mdi-weather-night"
+		prepend-icon="mdi-weather-sunny"
+		dense
+	/>
 </template>
