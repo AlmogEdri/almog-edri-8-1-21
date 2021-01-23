@@ -3,6 +3,8 @@ import Vuex from 'vuex';
 
 Vue.use(Vuex);
 
+const BASE_API_URL = 'https://dataservice.accuweather.com/';
+
 export default new Vuex.Store({
 	state: {
 		favorites: [],
@@ -40,7 +42,7 @@ export default new Vuex.Store({
 	actions: {
 		async fetchGeoLocation({ commit, state, dispatch }, { latitude, longitude }) {
 			try {
-				const { data } = await axios.get(`https://dataservice.accuweather.com/locations/v1/cities/geoposition/search`, {
+				const { data } = await axios.get(`${BASE_API_URL}locations/v1/cities/geoposition/search`, {
 					params: {
 						apikey: process.env.VUE_APP_API_KEY,
 						q: `${latitude},${longitude}`
@@ -56,7 +58,7 @@ export default new Vuex.Store({
 
 		async fetchCity({ commit, state, dispatch }) {
 			try {
-				const { data } = await axios.get(`https://dataservice.accuweather.com/currentconditions/v1/${state.cityKey}`, {
+				const { data } = await axios.get(`${BASE_API_URL}currentconditions/v1/${state.cityKey}`, {
 					params: {
 						details: true,
 						apikey: process.env.VUE_APP_API_KEY,
@@ -72,7 +74,7 @@ export default new Vuex.Store({
 
 		async fetchForecasts({ commit, state }) {
 			try {
-				const forecasts = await axios.get(`https://dataservice.accuweather.com/forecasts/v1/daily/5day/${state.cityKey}`, {
+				const forecasts = await axios.get(`${BASE_API_URL}forecasts/v1/daily/5day/${state.cityKey}`, {
 					params: {
 						apikey: process.env.VUE_APP_API_KEY
 					}
