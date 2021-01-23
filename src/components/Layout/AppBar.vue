@@ -20,7 +20,15 @@
 		</v-navigation-drawer>
 
 		<v-app-bar app>
-			<v-toolbar-title>Weather</v-toolbar-title>
+			<v-btn
+				to="/"
+				active-class="not-active"
+				v-text="'Weather'"
+				:ripple="false"
+				depressed
+				x-large
+				type
+			/>
 
 			<v-spacer />
 
@@ -74,6 +82,9 @@
 		.mobile-nav-buttons {
 			display: flex;
 			flex-direction: column;
+		}
+		.not-active.v-btn--active:before {
+			opacity: 0;
 		}
 	}
 </style>
