@@ -15,6 +15,7 @@ export default new Vuex.Store({
 	},
 	mutations: {
 		setCityKey: (state, key) => state.cityKey = key,
+
 		setCity: (state, city) => {
 
 			// Get and set city name in the city object
@@ -27,17 +28,18 @@ export default new Vuex.Store({
 			city['key'] = state.cityKey;
 			state.city = city;
 		},
+
 		setForecasts: (state, forecasts) => state.forecasts = forecasts,
+
+		toggleFahrenheit: (state) => state.fahrenheit = !state.fahrenheit,
+
 		toggleFavorite: (state, key) => {
 			const index = state.favorites.findIndex(x => x.key == key);
 
-			if (index > -1) {
-				state.favorites = state.favorites.filter(x => x.key !== key);
-			} else {
-				state.favorites = [...state.favorites, state.city];
-			}
+			state.favorites = index > -1
+				? state.favorites.filter(x => x.key !== key)
+				: [...state.favorites, state.city]
 		},
-		toggleFahrenheit: (state) => state.fahrenheit = !state.fahrenheit,
 	},
 	actions: {
 		async fetchGeoLocation({ commit, state, dispatch }, { latitude, longitude }) {
